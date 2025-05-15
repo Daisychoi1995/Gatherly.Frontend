@@ -1,17 +1,37 @@
 ﻿@page "/"
+@inject StudiesClient Client
 
 <PageTitle>Gatherly</PageTitle>
+@if(studies is null)
+{
+  <p><em>Loading...</em></p>
+}
+else
+{
+  <table>
+    <thead>
+      <th>Title</th>
+      <th>Category</th>
+      <th>Max Number</th>
+      <th>Place</th>
+      <th>Date</th>
+      <th>Posted By</th>
+    </thead>
+    <tbody>
+      @foreach (var study in studies)
+      {
+      <td>@study.Title</td>
+      }
+    </tbody>
+  </table>
+}
 
-<table>
-  <thead>
-    <th>Title</th>
-    <th>Category</th>
-    <th>Max Number</th>
-    <th>Place</th>
-    <th>Date</th>
-    <th>Posted By</th>
-  </thead>
-  <tbody>
+@code {
+  private StudySummary[]? studies;
+  
+  protected override async Task OnInitializedAsync() 
+  {
+    studies = await Client.GetStudiesAsync();
+  }
 
-  </tbody>
-</table>
+}

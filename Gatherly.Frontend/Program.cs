@@ -1,10 +1,16 @@
+using Gatherly.Frontend.Clients;
 using Gatherly.Frontend.Components;
 // using Users.hyeji.dotnet.GatherlyBlazor.Gatherly_Frontend.Components;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddRazorComponents();
+builder.Services.AddRazorComponents()
+                .AddInteractiveServerComponents();
+
+var GatherlyApiUrl = builder.Configuration["GatherlyApiUrl"] ?? throw new Exception("GatherlyApiUrl is not set");
+
+builder.Services.AddHttpClient<StudiesClient>(client => client.BaseAddress = new Uri(GatherlyApiUrl));
 
 var app = builder.Build();
 
