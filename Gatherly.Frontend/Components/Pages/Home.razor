@@ -1,5 +1,6 @@
 ﻿@page "/"
-@inject StudiesClient Client
+@inject StudiesClient StudiesClient
+@inject UsersClient UsersClient
 
 <PageTitle>Gatherly</PageTitle>
 @if(studies is null)
@@ -21,6 +22,11 @@ else
       @foreach (var study in studies)
       {
       <td>@study.Title</td>
+      <td>@study.Category</td>
+      <td>@study.MaxNumber</td>
+      <td>@study.Place</td>
+      <td>@study.Date</td>
+      <td>@study.UserName</td>
       }
     </tbody>
   </table>
@@ -28,10 +34,11 @@ else
 
 @code {
   private StudySummary[]? studies;
+  private UserDetail[]? user;
   
   protected override async Task OnInitializedAsync() 
   {
-    studies = await Client.GetStudiesAsync();
+    studies = await StudiesClient.GetStudiesAsync();
   }
 
 }

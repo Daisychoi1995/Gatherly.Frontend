@@ -12,6 +12,8 @@ var GatherlyApiUrl = builder.Configuration["GatherlyApiUrl"] ?? throw new Except
 
 builder.Services.AddHttpClient<StudiesClient>(client => client.BaseAddress = new Uri(GatherlyApiUrl));
 
+builder.Services.AddHttpClient<UsersClient>(client => client.BaseAddress = new Uri(GatherlyApiUrl));
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

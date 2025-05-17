@@ -18,4 +18,6 @@ public class StudySummary
 
   public DateTime Date { get; set; }
 
+  public string? UserName { get; set;  }
+
 }
