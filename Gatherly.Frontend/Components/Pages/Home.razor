@@ -26,7 +26,9 @@ else
       <td>@study.MaxNumber</td>
       <td>@study.Place</td>
       <td>@study.Date</td>
-      <td>@study.UserName</td>
+      <a role='button' href="@UserInfoUrl(study.UserId)">
+        <td>@study.UserName</td>
+      </a>
       }
     </tbody>
   </table>
@@ -41,4 +43,5 @@ else
     studies = await StudiesClient.GetStudiesAsync();
   }
 
+  private static string UserInfoUrl(int id) => $"/user-info/{id}" ;
 }
