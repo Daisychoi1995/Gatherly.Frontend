@@ -1,5 +1,3 @@
-using System;
-
 namespace Gatherly.Frontend.Models;
 
 public class UserDetail

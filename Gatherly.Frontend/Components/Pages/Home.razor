@@ -26,9 +26,11 @@ else
       <td>@study.MaxNumber</td>
       <td>@study.Place</td>
       <td>@study.Date</td>
-      <a role='button' href="@UserInfoUrl(study.UserId)">
-        <td>@study.UserName</td>
-      </a>
+      <td role='button'>
+        <a href="@UserInfoUrl(study.UserId)" class="btn btn-outline-info">
+            @study.UserName
+        </a>
+      </td>
       }
     </tbody>
   </table>

@@ -1,0 +1,32 @@
+﻿@page "/user-info/{id:int}"
+
+@inject UsersClient UsersClient
+
+<PageTitle>@title</PageTitle>
+<h3>@title</h3>
+
+@if(user is null)
+{
+  <p>Loading user info...</p>
+}
+else
+{
+  <p>@user.UserName</p>
+  
+}
+
+@code {
+  [Parameter]
+  public int id { get; set; }
+  private UserDetail? user;
+
+  private string title = string.Empty;
+
+  protected override async Task OnParametersSetAsync()
+  {
+    user = await UsersClient.GetUserByIdAsync(id);
+    title = $"{user.UserName}";
+
+  }
+
+}
